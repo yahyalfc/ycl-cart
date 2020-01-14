@@ -5,7 +5,7 @@ import './sign-in.styles.scss'
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component'
 
-import {SignInWithGoogle} from '../../firebase/firebase.utils'
+import {auth, SignInWithGoogle} from '../../firebase/firebase.utils'
 
 class SignIn extends Component {
     constructor(){
@@ -15,17 +15,22 @@ class SignIn extends Component {
             email: '',
             password: ''
         }
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleChange = this.handleChange.bind(this)
+       
 
     }
-    handleSubmit(event){
+    handleSubmit = async event => {
         event.preventDefault();
-        console.log('submitted')
-        console.log(this.state)
+        
+        const {email, password} = this.state;
 
+        try {
+            await auth.signInWithEmailAndPassword(email, password);
+            this.setState({email: '', password: '' });
+        } catch (error) {
+            console.log(error);
+        }
     }
-    handleChange(event){
+    handleChange = event => {
         
         const {value, name} = event.target;
         this.setState({[name]: value})
@@ -41,7 +46,6 @@ class SignIn extends Component {
                     name='email' 
                     type='email' 
                     label='email'
-
                     value={this.state.email} 
                     handleChange={this.handleChange}
                     required 
@@ -50,8 +54,7 @@ class SignIn extends Component {
                     
                     <FormInput 
                     name='password' 
-                    type='password'
-                    email='password' 
+                    type='password' 
                     label='password'
                     value={this.state.password} 
                     handleChange={this.handleChange}
