@@ -4,10 +4,8 @@ import './about.styles.scss'
 
 const AboutPage = () => (
     <div className='about'>
-        YCL is an e-commerce web store, where customers can find various clothing items of their choice. 
-        It offers a wide range of units ranging from the different categories; which include hats, jackets, sneakers and men/women collection. 
-        YCL aims to provide best services to its customers as customer satisfaction is our prime priority at YCL. 
-        Select products from our wide range, add to cart and online payment at checkout. 
+        A react based e-commerce web store developed for learning purposes. Developed  with the help of a udemy course which provided the development path and scss classes for styling.  
+        Select products from the wide range, add to cart and online payment using stripe at checkout.
     </div>
 )
 
